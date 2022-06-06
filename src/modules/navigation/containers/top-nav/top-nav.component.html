@@ -1,0 +1,19 @@
+<ng-container>
+  <nav *ngIf="environmentService.environment$ | async as environments"
+    class="topnav navbar navbar-expand shadow justify-content-between justify-content-sm-start navbar-light bg-white">
+    <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 me-2 ms-lg-2 me-lg-0" id="sidebarToggle"
+      (click)="toggleSideNav()">
+      <i-feather name="menu"></i-feather>
+    </button>
+    <ng-container *ngFor="let environment of environments | slice:0:1; let i=index">
+      <a class="navbar-brand pe-3 ps-4 ps-lg-2" routerLink="/dashboard">{{environment.indexName}}</a>
+      <!-- <app-top-nav-search></app-top-nav-search> -->
+      <ul class="navbar-nav align-items-center ms-auto me-lg-4">
+        <app-top-nav-docs></app-top-nav-docs>
+        <app-top-nav-alerts></app-top-nav-alerts>
+        <app-top-nav-messages></app-top-nav-messages>
+        <app-top-nav-user></app-top-nav-user>
+      </ul>
+    </ng-container>
+  </nav>
+</ng-container>

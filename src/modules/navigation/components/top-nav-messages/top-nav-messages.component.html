@@ -1,0 +1,18 @@
+<li class="nav-item dropdown no-caret me-3 dropdown-notifications" *ngIf="messagesService.messages$ | async as messages"
+  ngbDropdown display="dynamic">
+  <a class="btn btn-icon btn-transparent-dark dropdown-toggle" id="navbarDropdownMessages" ngbDropdownToggle
+    role="button" aria-haspopup="true" aria-expanded="false">
+    <i-feather name="mail"></i-feather>
+  </a>
+  <div class="dropdown-menu border-0 shadow animated--fade-in-up" ngbDropdownMenu
+    aria-labelledby="navbarDropdownMessages">
+    <h6 class="dropdown-header dropdown-notifications-header">
+      <i-feather class="me-2" name="mail"></i-feather>Centro de Mensajes
+    </h6>
+    <app-top-nav-messages-item *ngFor="let message of messages" [message]="message"></app-top-nav-messages-item>
+
+    <a *ngIf="countMessages == 0" class="dropdown-item dropdown-notifications-footer" href="#!">Sin Mensajes</a>
+    <a *ngIf="countMessages > 0" class="dropdown-item dropdown-notifications-footer" href="#!">Ver Todos los
+      Mensajes</a>
+  </div>
+</li>

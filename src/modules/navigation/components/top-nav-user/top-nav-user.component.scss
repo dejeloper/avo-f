@@ -1,0 +1,10 @@
+.dropdown-menu {
+  top: 0 !important;
+}
+
+.dropdown-user-img {
+  height: calc((0.875rem * 1) + (0.875rem * 2) + (2px)) !important;
+  width: calc((0.875rem * 1) + (0.875rem * 2) + (2px)) !important;
+  object-fit: cover;
+  border-radius: 50%;
+}

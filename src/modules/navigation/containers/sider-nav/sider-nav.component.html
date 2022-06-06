@@ -1,0 +1,50 @@
+<nav class="sidenav shadow-right" id="sidenavAccordion">
+  <nav class="sidenav shadow-right sidenav-light">
+    <div class="sidenav-menu">
+      <div class="nav accordion" id="accordionSidenav">
+        <ng-container *ngFor="let menu of menus">
+          <ng-container *ngIf="menu.isActive">
+            <div class="sidenav-menu-heading">{{menu.text}}</div>
+            <ng-container *ngFor="let m of menu.menus">
+              <ng-container *ngIf="m.isActive">
+                <ng-container *ngIf="m.anyChildren; then children; else noChildren;"></ng-container>
+                <ng-template #children>
+                  <a class="nav-link" [ngClass]="{active: isActive, collapsed: collapsed}" href="javascript:void(0);"
+                    [id]="'navLink'+m.id" (click)="toogle(m.id.toString())" data-bs-toggle="collapsed"
+                    [attr.data-bs-target]="'#collapse_' + m.id" aria-expanded="false"
+                    [attr.aria-controls]="'collapse_' + m.id">
+                    <div class="nav-link-icon"><i class="{{m.icon}} fa-lg"></i></div>
+                    <span>&emsp;{{m.text}}</span>
+                    <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                  </a>
+                  <div class="nav-link-panel" [ngClass]="{collapsed: collapsed, 'd-none': collapsed}"
+                    [attr.id]="'#collapse_' + m.id" data-bs-parent="#accordionSidenav">
+                    <nav class="sidenav-menu-nested nav">
+                      <ng-container *ngFor="let c of m.children">
+                        <ng-container *ngIf="c.isActive">
+                          <a class="nav-link" routerLinkActive="active" routerLink={{c.link}}>{{c.text}}</a>
+                        </ng-container>
+                      </ng-container>
+                    </nav>
+                  </div>
+                </ng-template>
+                <ng-template #noChildren>
+                  <a class="nav-link" routerLink={{m.link}} routerLinkActive="active">
+                    <div class="nav-link-icon"><i class="{{m.icon}} fa-lg"></i></div>
+                    <span>&emsp;{{m.text}}</span>
+                  </a>
+                </ng-template>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+      </div>
+    </div>
+  </nav>
+  <div class="sidenav-footer">
+    <div class="sidenav-footer-content">
+      <div class="sidenav-footer-subtitle">Iniciaste sesión como:</div>
+      <div class="sidenav-footer-title"> Jhonatan Guerrero </div>
+    </div>
+  </div>
+</nav>
